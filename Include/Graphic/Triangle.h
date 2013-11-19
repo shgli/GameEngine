@@ -2,6 +2,7 @@
 #define _TRIANGLE_H
 #include "Graphic/IndexBuffer.h"
 #include "Graphic/VertexBuffer.h"
+#include "ObjectState.h"
 #include "Graphic/Color.h"
 #include "Math/Math.h"
 class IndexBuffer;
@@ -75,6 +76,7 @@ public:
     inline void RemoveAttribute(UInt32 attr) { m_attribute &= ~attr; }
     inline bool HasAttribute(UInt32 attr) const { return (m_attribute & attr); }
 
+    inline bool IsSolid( void ) const { return HasAttribute(EOS_SOLID);}
     friend std::ostream& operator<< (std::ostream& os,const Triangle& tri);
 };
 

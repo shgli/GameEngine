@@ -29,7 +29,7 @@ class Object
     Int32 m_nStartIdxInGlobalBuf;
 public:
     //constructor/destructor
-    Object(const std::string& strName,const ObjectModelPtr& pModel,ObjectAttribute attri = EOS_SOLID | CM_ALL | BFC_BACK | SM_CONST);
+    Object(const std::string& strName,const ObjectModelPtr& pModel,ObjectAttribute attri = CM_ALL | BFC_BACK | SM_CONST);
 
     Object* Clone( void );
 

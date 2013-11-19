@@ -38,10 +38,11 @@ void CubeView::Init( void )
 
 void CubeView::BeforeDraw( void )
 {
+    Super::BeforeDraw();
 //    m_yRot = PI;
     (*m_pTriangle)->LoadIdentity();
     (*m_pTriangle)->Scale(3.5,3.5,3.5);
-    (*m_pTriangle)->Rotate(m_yRot,Vector(0,1,0));
+    (*m_pTriangle)->Rotate(m_yRot,Vector(1,1,0));
     //(*m_pTriangle)->Rotate(0.0,m_yRot,0.0);
     m_yRot += PI / 90;
     
@@ -50,7 +51,6 @@ void CubeView::BeforeDraw( void )
 	m_yRot = 0.0;
     }
 
-    Super::BeforeDraw();
 }
 
 void CubeView::OnDraw( void )
@@ -66,4 +66,17 @@ bool CubeView::HandlerMoving(EvtState nState,Int16 x,UInt16 y,Int16 nDx,Int16 nD
 //        m_nCur = 0.1;
 //    }
     return true;
+}
+
+void CubeView::OnKeyEvent(KeyState ks,int nKeyType,unsigned char key)
+{
+    switch(nKeyType)
+    {
+	case LEFT_ARROW:
+            m_yRot += PI / 180;
+	    break;
+	case RIGHT_ARROW:
+            m_yRot -= PI / 180;
+	    break;
+    }
 }

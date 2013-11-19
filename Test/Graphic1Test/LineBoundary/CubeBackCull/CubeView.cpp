@@ -46,7 +46,7 @@ void CubeView::BeforeDraw( void )
     (*m_pTriangle)->Scale(3.5,3.5,3.5);
     (*m_pTriangle)->Rotate(m_yRot,vRot);
     //(*m_pTriangle)->Rotate(0.0,0.0,m_yRot);
-    m_yRot += PI / 90;
+    m_yRot += PI / 180;
     
     if(m_yRot > PI2)
     {
@@ -69,3 +69,5 @@ bool CubeView::HandlerMoving(EvtState nState,Int16 x,UInt16 y,Int16 nDx,Int16 nD
 //    }
     return true;
 }
+
+

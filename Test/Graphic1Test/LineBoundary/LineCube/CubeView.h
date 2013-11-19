@@ -16,7 +16,7 @@ public:
     virtual void OnDraw( void );
 
     virtual bool HandlerMoving(EvtState nState,Int16 x,UInt16 y,Int16 nDx,Int16 nDy,Int16 nTotalDx,Int16 nTotalDy);
-
+    virtual void OnKeyEvent(KeyState ks,int nKeyType,unsigned char key);
 private:
     Object* m_pTriangle;
     Real  m_yRot;

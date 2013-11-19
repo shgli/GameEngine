@@ -69,9 +69,15 @@ void Render::Draw(RenderList& rendList)
                 Point &p0 = pBuf->GetPosition(tri->GetIndexOfP0());
                 Point &p1 = pBuf->GetPosition(tri->GetIndexOfP1());
                 Point &p2 = pBuf->GetPosition(tri->GetIndexOfP2());
-       	        //m_pCanvas->DrawTriangle(p0.x,p0.y,p1.x,p1.y,p2.x,p2.y); 
 		m_pCanvas->SetColor(tri->GetColor());
-                m_pCanvas->FillTriangle(p0.x,p0.y,p1.x,p1.y,p2.x,p2.y); 
+		//if(tri->IsSolid())
+		//{
+                //    m_pCanvas->FillTriangle(p0.x,p0.y,p1.x,p1.y,p2.x,p2.y); 
+		//}
+		//else
+		{
+       	            m_pCanvas->DrawTriangle(p0.x,p0.y,p1.x,p1.y,p2.x,p2.y); 
+		}
             }
 	}
     }

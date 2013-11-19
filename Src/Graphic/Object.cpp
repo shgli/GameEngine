@@ -24,11 +24,17 @@ void Object::Update(const Matrix& mat)
     {
 	delete tri;
     }
+
     m_vTriangles.clear();
-    auto vTris = m_pObjectModel->GetTriangles();
+    auto& vTris = m_pObjectModel->GetTriangles();
+    //auto vTris = m_pObjectModel->GetTriangles();
+
+    Triangle* pTriangle = nullptr;
     for(Int32 nIdx = 0; nIdx < vTris.size(); ++nIdx)
     {
-	m_vTriangles.push_back(new Triangle(*vTris[nIdx]));
+	pTriangle = new Triangle(*vTris[nIdx]);
+        pTriangle->AddAttribute(GetStyle());
+	m_vTriangles.push_back(pTriangle);
     }
 }
 

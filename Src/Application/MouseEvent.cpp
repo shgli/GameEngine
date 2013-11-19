@@ -261,6 +261,7 @@ bool MouseEventStrategy::OnMouseEvent(MouseEvent event, Int x, Int y,Int32 dwPar
 			Int nTotalMoveHor = x - m_evtAssert.GetPressInfo().m_nOccurX;
 			Int nTotalMoveVer = y - m_evtAssert.GetPressInfo().m_nOccurY;
 			Int64 nMoveTime = Int64(time(nullptr)) - m_evtAssert.GetPressInfo().nOccurTime;
+			nMoveTime = 0 == nMoveTime ? 1 : nMoveTime;
 			const Int nAcceleration = 2;
 			const Int nMaxMoveCount = 16;
 			const Int nMinMoveCount = 5;

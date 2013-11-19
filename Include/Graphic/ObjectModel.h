@@ -35,7 +35,7 @@ public:
 
     inline Int32 GetTriangleCount( void ) const { return m_vTriangles.size(); }
 
-    inline std::vector<Triangle*> GetTriangles( void ) { return m_vTriangles; } 
+    inline std::vector<Triangle*>& GetTriangles( void ) { return m_vTriangles; } 
 
     inline const VertexBuffer* GetVertexBuffer( void ) const { return m_vertexBuf; }
 
