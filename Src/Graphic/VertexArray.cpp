@@ -19,6 +19,11 @@ void VertexArray::Copy2(VertexArray& array,Attributes copyAttri) const
 	m_aTextCoord.Copy2(array.m_aTextCoord);
     }
 
+    if(HasAttribute(VA_TEXTCOOR1) & (copyAttri & VA_TEXTCOOR1))
+    {
+	m_aTextCoord1.Copy2(array.m_aTextCoord1);
+    }
+
     if(HasAttribute(VA_NORMAL) & (copyAttri & VA_NORMAL))
     {
 	m_aNormal.Copy2(array.m_aNormal);
@@ -31,7 +36,7 @@ VertexIndex::VertexIndex( void )
     :m_nIdxPos(InvalidId)
     ,m_nIdxText(InvalidId)
     ,m_nIdxNormal(InvalidId)
-    ,m_clr(Color::Black)
+    ,m_nIdxColor(InvalidId)
 {}
 
 VertexIndex& VertexIndex::operator= (const std::initializer_list<Int32>& idx)
@@ -57,7 +62,9 @@ VertexIndex& VertexIndex::operator= (const std::initializer_list<Int32>& idx)
 Vertex::Vertex(VertexArray& array,const VertexIndex& indices)
     :r_pPosition(nullptr)
     ,r_pTextCoord(nullptr)
+    ,r_pTextCoord1(nullptr)
     ,r_pNormal(nullptr)
+    ,r_pColor(nullptr)
 {
     if(array.HasAttribute(VA_POSITION))
     {
@@ -69,9 +76,19 @@ Vertex::Vertex(VertexArray& array,const VertexIndex& indices)
 	r_pTextCoord = &array.GetTextCoord(indices.GetTextCoordIndex());
     }
 
+    if(array.HasAttribute(VA_TEXTCOOR1))
+    {
+	r_pTextCoord1 = &array.GetTextCoord1(indices.GetTextCoord1Index());
+    }
+
     if(array.HasAttribute(VA_NORMAL))
     {
 	r_pNormal = &array.GetNormal(indices.GetNormalIndex());
+    }
+
+    if(array.HasAttribute(VA_COLOR))
+    {
+	r_pColor = &array.GetColor(indices.GetColorIndex());
     }
 }
 
@@ -88,6 +105,8 @@ bool Vertex::HasAttribute(VertexAttribute attri) const
 	    return nullptr != r_pColor;
 	case VA_TEXTCOOR:
 	    return nullptr != r_pTextCoord;
+	case VA_TEXTCOOR1:
+	    return nullptr != r_pTextCoord1;
 	default:
 	    return false;
     }

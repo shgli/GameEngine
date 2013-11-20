@@ -128,25 +128,33 @@ VertexIndex Clipper::IntersectAndInterpolateAttr(Vertex* p0,Vertex* p1,VertexArr
     auto& aPositions = aVertices.GetPositions();
     auto& aTextCoords = aVertices.GetTextCoords();
     auto& aNormals = aVertices.GetNormals();
+    auto& aColors = aVertices.GetColors();
 
     aPositions.Append(p0->GetPosition() + t * (p1->GetPosition() - p0->GetPosition()));
-    iV.SetPositionIndex(aPositions.GetSize() - 1);
+    iV.SetPositionIndex(aPositions.LastIndex());
 
     if(p0->HasAttribute(VA_COLOR))
     {
-	iV.SetColor(p0->GetColor() + t * (p1->GetColor() - p0->GetColor()));
+	aColors.Append(p0->GetColor() + t * (p1->GetColor() - p0->GetColor()));
+	iV.SetColorIndex(aColors.LastIndex());
     }
 
     if(p0->HasAttribute(VA_TEXTCOOR))
     {
 	aTextCoords.Append(p0->GetTextCoord() + t * (p1->GetTextCoord() - p0->GetTextCoord()));
-	iV.SetTextCoordIndex(aTextCoords.GetSize() - 1);
+	iV.SetTextCoordIndex(aTextCoords.LastIndex());
+    }
+
+    if(p0->HasAttribute(VA_TEXTCOOR1))
+    {
+	aTextCoords.Append(p0->GetTextCoord() + t * (p1->GetTextCoord() - p0->GetTextCoord()));
+	iV.SetTextCoordIndex(aTextCoords.LastIndex());
     }
 
     if(p0->HasAttribute(VA_NORMAL))
     {
         aNormals.Append(p0->GetNormal() + t * (p1->GetNormal() - p0->GetNormal()));
-	iV.SetNormalIndex(aNormals.GetSize() - 1);
+	iV.SetNormalIndex(aNormals.LastIndex());
     }
    
     return iV;

@@ -21,6 +21,15 @@ void ProjectStep::ProcessPosition(const VertexIndex& idx,VertexArray& buf)
         TextFix::Double2Fix(coor.t);
         TextFix::Double2Fix(coor.s);
     }
+
+    if(buf.HasAttribute(VA_TEXTCOOR1))
+    {
+    	TextCoord& coor = v.GetTextCoord1();
+	coor.t *= pt.z;
+	coor.s *= pt.z;
+        TextFix::Double2Fix(coor.t);
+        TextFix::Double2Fix(coor.s);
+    }
 }
 
 void ProjectStep::Visit(Object& obj)
@@ -51,7 +60,6 @@ void ProjectStep::Visit(Object& obj)
 	{
 	    ProcessPosition(idx2,aVertexArray);
 	}
-        m_vRendLists.push_back(RenderItem(triangle));
     } 
 }
 

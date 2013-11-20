@@ -91,6 +91,7 @@ Object* PLGLoader::Load(const std::string & strFile,CoordinateSystem cs)
 #endif
 
     Array<Triangle> aTriangles(nTriangles);
+    Array<Color> aColor(nTriangles * 3);
     for(Int32 nTri = 0; nTri < nTriangles; ++nTri)
     {
         //读取一个三角形
@@ -190,10 +191,11 @@ Object* PLGLoader::Load(const std::string & strFile,CoordinateSystem cs)
             }
             ++i;
 	}
+	aColor[nTri] = Color(red,green,blue,255);
 
-	VertexIndex idx0(p1,InvalidId,InvalidId,Color(red,green,blue,255));
-	VertexIndex idx1(p2,InvalidId,InvalidId,Color(red,green,blue,255));
-	VertexIndex idx2(p3,InvalidId,InvalidId,Color(red,green,blue,255));
+	VertexIndex idx0(p1,nTri,InvalidId,InvalidId);
+	VertexIndex idx1(p2,nTri,InvalidId,InvalidId);
+	VertexIndex idx2(p3,nTri,InvalidId,InvalidId);
 
         aTriangles[nTri] = Triangle(idx0,idx1,idx2,0);
     }//for

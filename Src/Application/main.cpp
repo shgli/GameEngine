@@ -41,7 +41,7 @@ void PaintThread( void )
         glutPostRedisplay();
 	
 	boost::xtime xt;
-        boost::xtime_get(&xt, boost::TIME_UTC);
+        boost::xtime_get(&xt, boost::TIME_UTC_);
         //xt.sec += 2;
         xt.nsec += 1600;		
         boost::thread::sleep(xt);
