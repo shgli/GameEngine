@@ -32,7 +32,7 @@ void ProjectStep::Visit(Object& obj)
     auto& aVertexArray = aTriangles.GetVertices();
     for(Int32 iTri = 0; iTri < aTriangles.GetSize(); ++iTri)
     {
-	Triangle& triangle = atriangles[itri];
+	Triangle& triangle = aTriangles[iTri];
 	VertexIndex& idx0 = triangle.GetIndex0();
 	VertexIndex& idx1 = triangle.GetIndex1();
 	VertexIndex& idx2 = triangle.GetIndex2();
